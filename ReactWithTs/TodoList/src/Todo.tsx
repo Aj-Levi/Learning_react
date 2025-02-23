@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 interface Todo {
     id: number;
@@ -8,13 +8,13 @@ interface Todo {
 
 const TodoList = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
-    const [current, setCurrent] = useState<string>("");
+    let currentTask = useRef<HTMLInputElement>(null)
 
-    const add = (task: string): void => {
-        if (task.trim() === "") return;
-        const newTodo: Todo = { id: todos.length + 1, task, completed: false };
+    const add = (): void => {
+        if (currentTask.current!.value.trim() === "") return;
+        const newTodo: Todo = { id: todos.length + 1, task: currentTask.current!.value, completed: false };
         setTodos([...todos, newTodo]);
-        setCurrent("");
+        currentTask.current!.value=''
     };
 
     const update = (id: number): void => {
@@ -38,12 +38,11 @@ const TodoList = () => {
                 <input
                 type="text"
                 placeholder="Add task"
-                value={current}
-                onChange={(e) => setCurrent(e.target.value)}
+                ref={currentTask}
                 className="flex-grow p-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <button
-                onClick={() => add(current)}
+                onClick={add}
                 className="p-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                 Add
