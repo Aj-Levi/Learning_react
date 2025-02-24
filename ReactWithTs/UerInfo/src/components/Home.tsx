@@ -1,8 +1,15 @@
 import React from "react";
 
+interface CardDetails{
+  title: string;
+  desc: string;
+  image: string;
+  tags: string[];
+}
+
 const Home = () => {
 
-  const CardDetails = [
+  const CardDetails: CardDetails[] = [
     {
       title: "Python",
       desc: "A high-level programming language known for its readability and versatility.",
