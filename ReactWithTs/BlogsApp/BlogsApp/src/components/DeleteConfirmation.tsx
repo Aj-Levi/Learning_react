@@ -3,7 +3,7 @@ const DeleteConfirmation = ({ remove }: { remove: () => void }) => {
     <div>
       <dialog id="DeleteModal" className="modal">
         <div className="modal-box">
-          <p className="py-4">Are you sure you want to delete this blog</p>
+          <p className="py-4 text-red-500 font-extrabold">Are you sure you want to delete this blog</p>
           <button
             onClick={remove}
             className="btn btn-primary text-lg w-full mt-4"

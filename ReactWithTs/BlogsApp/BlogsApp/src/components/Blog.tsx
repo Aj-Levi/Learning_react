@@ -2,7 +2,7 @@ import { IoBookmarkOutline } from "react-icons/io5";
 import { IoBookmark } from "react-icons/io5";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDeleteOutline } from "react-icons/md";
-import { BlogInterface } from "../types/Types.ts";
+import { BlogInterfaceWithIndex } from "../Interfaces/Interfaces.ts";
 import { BlogsContext } from "./Home.tsx";
 import { useContext, useState } from "react";
 import DeleteConfirmation from "./DeleteConfirmation.tsx";
@@ -14,11 +14,11 @@ const Blog = ({
   description,
   date,
   index,
-}: BlogInterface & { index: number }) => {
+}: BlogInterfaceWithIndex) => {
   let { Blogs, setBlogs } = useContext(BlogsContext);
 
   const remove = (): void => {
-    let newBlogs = Blogs.filter((_, ind) => ind !== index);
+    let newBlogs = Blogs.filter((_, ind: number):boolean => ind !== index);
     setBlogs(newBlogs);
   };
 
@@ -40,15 +40,15 @@ const Blog = ({
   );
 
   return (
-    <div className="flex gap-4 p-2 bg-gray-800 rounded-xl w-[40vw] mx-auto mb-4">
-      <div className="image w-1/4 h-30 my-auto">
+    <div className="flex gap-4 p-2 justify-self-center bg-gray-800 rounded-xl w-[40vw] max-lg:w-[70vw] max-md:flex-col">
+      <div className="image w-1/4 h-30 my-auto max-md:w-full">
         <img
           src={image}
           alt="image"
           className="h-full w-full object-cover rounded-xl"
         />
       </div>
-      <div className="w-3/4 h-auto flex flex-col gap-2">
+      <div className="w-3/4 h-auto flex flex-col gap-2 max-md:w-full">
         <div className="title font-bold underline decoration-2 underline-offset-4 text-lg">
           {title}
         </div>

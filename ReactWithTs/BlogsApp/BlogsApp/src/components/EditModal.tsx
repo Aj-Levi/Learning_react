@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { BlogsContext } from "./Home.tsx";
-import { BlogInterface } from "../types/Types.ts";
+import { BlogInterface } from "../Interfaces/Interfaces.ts";
 
 const EditModal = ({ index }: { index: number }) => {
   let { Blogs, setBlogs } = useContext(BlogsContext);

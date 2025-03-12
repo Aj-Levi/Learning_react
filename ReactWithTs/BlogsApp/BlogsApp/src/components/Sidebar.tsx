@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { SidebarState } from "./Home.tsx";
 
 const Sidebar = () => {
-  const { OpenSidebar, setOpenSidebar } = useContext(SidebarState);
+  const { OpenSidebar } = useContext(SidebarState);
 
   return (
     <div

@@ -4,17 +4,12 @@ import { IoMenu } from "react-icons/io5";
 import Sidebar from "./Sidebar.tsx";
 import AddBlog from "./AddBlog.tsx";
 import Blog from "./Blog.tsx";
-import { BlogInterface } from "../types/Types.ts";
-import { BlogsContextInterface } from "../types/Types.ts";
+import { BlogInterface } from "../Interfaces/Interfaces.ts";
+import { BlogsContextInterface } from "../Interfaces/Interfaces.ts";
+import { SidebarContextInterface } from "../Interfaces/Interfaces.ts";
 
-interface SidebarContext {
-  OpenSidebar: boolean;
-  setOpenSidebar: (state: boolean) => void;
-}
-
-export const SidebarState = createContext<SidebarContext>({
+export const SidebarState = createContext<SidebarContextInterface>({
   OpenSidebar: false,
-  setOpenSidebar: () => {},
 });
 
 export const BlogsContext = createContext<BlogsContextInterface>({
@@ -70,7 +65,7 @@ const Home = () => {
         <IoMenu size={30} />
       </button>
       <SidebarState.Provider
-        value={{ OpenSidebar: OpenSidebar, setOpenSidebar: setOpenSidebar }}
+        value={{ OpenSidebar: OpenSidebar }}
       >
         <Sidebar />
       </SidebarState.Provider>
@@ -85,11 +80,12 @@ const Home = () => {
       >
         <MdOutlineStickyNote2 size={25} /> New Blog
       </button>
-
-      <AddBlog Blogs={Blogs} setBlogs={setBlogs} />
-
+      
       <BlogsContext.Provider value={{ Blogs: Blogs, setBlogs: setBlogs }}>
-        <div className="blogs pt-4">
+
+      <AddBlog />
+
+        <div className="blogs pt-24 gap-y-4 max-lg:grid-cols-1 grid grid-cols-2">
           {Blogs.map((blog, index) => (
             <Blog
               key={index}

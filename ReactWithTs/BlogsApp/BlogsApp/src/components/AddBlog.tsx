@@ -1,20 +1,21 @@
-import { BlogInterface } from "../types/Types.ts";
+import { useContext } from "react";
+import { BlogInterface } from "../Interfaces/Interfaces.ts";
+import { BlogsContext } from "./Home.tsx";
 
-const AddBlog = ({
-  Blogs,
-  setBlogs,
-}: {
-  Blogs: BlogInterface[];
-  setBlogs: (blogs: BlogInterface[]) => void;
-}) => {
+const AddBlog = () => {
+
+  let {Blogs, setBlogs} = useContext(BlogsContext)
+  
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
   let mm = String(today.getMonth() + 1).padStart(2, "0");
   let yyyy = today.getFullYear();
 
   const formAction = (formData: FormData): void => {
+
     const file = formData.get("image") as File;
     const imageUrl = file ? URL.createObjectURL(file) : "";
+    
     let newBlog: BlogInterface = {
       title: formData.get("title") as string,
       description: formData.get("description") as string,
