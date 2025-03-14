@@ -17,8 +17,8 @@ const MealsHome = () => {
         let data = await response.json();
         setInitialMeals(data.meals);
       } catch (error) {
-        console.error("unable to fetch data");
-      }
+        console.error("unable to fetch data",error);
+      }``
     };
     fetchMeals();
   }, []);
@@ -38,7 +38,7 @@ const MealsHome = () => {
         setSearchQuery((e.target as HTMLInputElement).value)
         }
         placeholder="Search Meals"
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-800 text-white"
+        className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-800 text-white"
       />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
