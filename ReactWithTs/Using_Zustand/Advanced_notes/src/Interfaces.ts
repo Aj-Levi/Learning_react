@@ -1,13 +1,17 @@
+export interface SidebarStoreInterface{
+    openSidebar: boolean;
+    toggleSidebar: () => void;
+}
+
 export interface Note{
-    color: string;
+    id: string;
     title: string;
+    color: string;
     content: string;
 }
 
 export interface NotesStoreInterface{
     notes: Note[];
-
-    filteredNotes: Note[];
 
     searchQuery: string;
     setSearchQuery: (str: string) => void;
@@ -15,14 +19,14 @@ export interface NotesStoreInterface{
     currentColor: string;
     currentTitle: string;
     currentContent: string;
+    currentIndex: string|null;
 
     setCurrentColor: (str: string) => void;
     setCurrentTitle: (str: string) => void;
     setCurrentContent: (str: string) => void;
+    setCurrentIndex: (index: string|null) => void;
 
-    add: () => void;
-    remove: (ind: number) => void;
-    update: (ind: number) => void;
-
-    setFilteredNotes: () => void;
+    add: (id: string) => void;
+    remove: (id: string) => void;
+    update: (id: string) => void;
 }
