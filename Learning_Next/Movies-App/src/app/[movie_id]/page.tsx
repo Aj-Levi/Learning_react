@@ -10,8 +10,8 @@ interface Movie {
   commentsList: string[];
 }
 
-const movie = ({ params }: { params: { movie_id: string } }) => {
-  const { movie_id } = params;
+const movie = async({ params }: { params: Promise<{ movie_id: string }> }) => {
+  const { movie_id } = await params;
 
   let movie: Movie;
 
